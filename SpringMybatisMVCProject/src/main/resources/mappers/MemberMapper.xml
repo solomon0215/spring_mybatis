@@ -2,4 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
  	<cache/>
+ 	<sql id="baseColumn">
+ 		USER_ID,USER_PW,USER_NAME,
+		USER_BIRTH, USER_GENDER, USER_EMAIL,USER_ADDR,
+		USER_PH1, USER_PH2, USER_REGIST
+ 	</sql>
+ 	<insert id="memberInsert" parameterType="memDTO">
+ 		 insert into 
+ 		 MEMBER(<include refid="baseColumn" />)
+		 values(#{userId},#{userPw},#{userName},
+		 		#{userBirth},#{userGender},#{userEmail},#{userAddr},
+		 		#{userPh1},#{userPh2},sysdate)
+ 	</insert>
 </mapper>

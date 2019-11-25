@@ -9,4 +9,5 @@
 >
 <context:annotation-config />
 <bean class="Controller.Main.MainController"/>
+<bean class="Controller.Member.MemberController"/>
 </beans>
