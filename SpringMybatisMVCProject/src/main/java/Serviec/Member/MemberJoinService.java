@@ -16,6 +16,8 @@ import Repository.Member.MemberRepository;
 public class MemberJoinService {
 	@Autowired
 	private MemberRepository memberRepository;
+	@Autowired
+	private MemberRegMailService memberRegMailService;
 	
 	public Integer join(MemberCommand memberCommand) {
 		Integer result = null;
@@ -38,6 +40,9 @@ public class MemberJoinService {
 			e.printStackTrace();
 		}
 		result = memberRepository.insertMember(dto);
+		if(result >0) {
+			memberRegMailService.sendMail(dto.getUserEmail(), dto.getUserName());
+		}
 		return result;
 	}
 }

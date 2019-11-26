@@ -1,5 +1,7 @@
 package Repository.Member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,21 @@ public class MemberRepository {
 		String statement = namespace + ".memberInsert";
 		Integer result = sqlSession.insert(statement,dto);
 		return result;
+	}
+	
+	public Integer updateCheck(String num, String reciver, String name) {
+		MemberDTO dto = new MemberDTO();
+		dto.setUserEmail(name);
+		dto.setUserName(name);
+		dto.setUserCk(num);
+		String statement = namespace + ".memberUserCk";
+		
+		return sqlSession.update(statement, dto);
+	}
+	public List<String> selectMemberAll(){
+		String statement = namespace + ".memberUserEmail";
+		List<String> list = null;
+		list =sqlSession.selectList(statement);
+		return list;
 	}
 }

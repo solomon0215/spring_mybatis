@@ -13,6 +13,14 @@ public class MemberDTO {
 	String userPh1;
 	String userPh2;
 	Timestamp userRegist;
+	String userCk;
+	
+	public String getUserCk() {
+		return userCk;
+	}
+	public void setUserCk(String userCk) {
+		this.userCk = userCk;
+	}
 	public String getUserId() {
 		return userId;
 	}

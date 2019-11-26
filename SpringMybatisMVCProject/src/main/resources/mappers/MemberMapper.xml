@@ -14,4 +14,13 @@
 		 		#{userBirth},#{userGender},#{userEmail},#{userAddr},
 		 		#{userPh1},#{userPh2},sysdate)
  	</insert>
+ 	<update id="memberUserCk" parameterType="memDTO">
+ 		update member 
+ 		set USER_CK=#{userCk} 
+ 		where USER_EMAIL = #{userEmail} and USER_NAME = #{userName} 
+ 		and USER_CK is not null
+ 	</update>
+ 	<select id="memberUserEmail" resultType="string">
+ 		select USER_EMAIL from MEMBER
+ 	</select>
 </mapper>

@@ -49,6 +49,7 @@
 <a href ="#">공지사항 게시판</a>
 <a href ="board/answerBoardList">답변형 게시판</a>
 <a href ="goodsList.gd">상품목록</a>
+<a href ="memberAllMail">단체 메일 보내기</a>
 </c:if>
 </body>
 </html>

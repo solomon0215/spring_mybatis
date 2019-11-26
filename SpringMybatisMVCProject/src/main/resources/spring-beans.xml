@@ -10,4 +10,7 @@
 <context:annotation-config />
 <bean id="memberRepository" class="Repository.Member.MemberRepository"/> 
 <bean id="memberJoinService" class="Serviec.Member.MemberJoinService"/> 
+<bean id="memberRegMailService" class="Serviec.Member.MemberRegMailService"/> 
+<bean id="memberOkService" class="Serviec.Member.MemberOkService"/> 
+<bean id="emailAllService" class="Serviec.Member.EmailAllService"/> 
 </beans>

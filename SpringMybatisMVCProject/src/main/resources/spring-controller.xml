@@ -10,4 +10,6 @@
 <context:annotation-config />
 <bean class="Controller.Main.MainController"/>
 <bean class="Controller.Member.MemberController"/>
+<bean class="Controller.Member.MemberMailController"/>
+<bean class="Controller.Member.MemberAllMailingController"/>
 </beans>
