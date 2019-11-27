@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 	  <typeAlias type="Model.DTO.MemberDTO" alias="memDTO"/>
+	  <typeAlias type="Model.DTO.PasswordChangeDTO" alias="pwchg"/>
 	</typeAliases>
 </configuration>

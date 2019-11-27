@@ -18,5 +18,7 @@
 	<bean id="mainService" class="Service.Main.MainService"/> 
 	<bean id="memberDetailService" class="Serviec.Member.MemberDetailService"/>
 	<bean id="memberModifyService" class="Serviec.Member.MemberModifyService"/>
+	<bean id="pwModifyService" class="Serviec.Member.PwModifyService"/>
+	<bean id="changePasswordModifyService" class="Serviec.Member.ChangePasswordModifyService"/>
 	
 </beans>

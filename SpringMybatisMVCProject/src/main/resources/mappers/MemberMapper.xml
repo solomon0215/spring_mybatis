@@ -37,7 +37,13 @@
  	</select>
  	<select id="userCheck" parameterType="memDTO" resultMap="baseMember">
  		select <include refid="baseColumn" />
- 		from MEMBER where USER_ID = #{userId}
+ 		from MEMBER 
+ 		<trim prefix="where" prefixOverrides="AND | OR">
+ 			 <if test="userPw != null">
+ 			 user_pw = #{userPw}
+ 			 </if>
+ 			and USER_ID = #{userId}
+ 		</trim>
  	</select>
  	<update id="memberUpdate" parameterType="memDTO">
  		update member
@@ -59,5 +65,15 @@
  		<where>
  			USER_ID = #{userId} and USER_PW = #{userPw}
  		</where> 
+ 	</update>
+ 	
+ 	<update id="updatePassword" parameterType="pwchg">
+ 		update member
+ 		<set>
+ 			USER_PW = #{newPw}
+ 		</set>
+ 		<where>
+ 			USER_ID = #{userId} and USER_PW = #{pw1}
+ 		</where>
  	</update>
 </mapper>

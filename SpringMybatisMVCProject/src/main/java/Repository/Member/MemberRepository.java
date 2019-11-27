@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import Model.DTO.MemberDTO;
+import Model.DTO.PasswordChangeDTO;
 
 @Repository
 public class MemberRepository {
@@ -45,5 +46,14 @@ public class MemberRepository {
 	public Integer memberUpdate(MemberDTO dto) {
 		String statement = namespace + ".memberUpdate";
 		return sqlSession.update(statement, dto);
+	}
+	public MemberDTO memberCheck(MemberDTO member) {
+		String statement = namespace + ".userCheck";
+		return sqlSession.selectOne(statement, member);
+	}
+	
+	public Integer updatePassword(PasswordChangeDTO pwchange) {
+		String statement = namespace + ".updatePassword";
+		return sqlSession.update(statement, pwchange);
 	}
 }
