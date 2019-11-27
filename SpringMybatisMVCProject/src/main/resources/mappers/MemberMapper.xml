@@ -7,6 +7,18 @@
 		USER_BIRTH, USER_GENDER, USER_EMAIL,USER_ADDR,
 		USER_PH1, USER_PH2, USER_REGIST
  	</sql>
+ 	<resultMap type="memDTO" id="baseMember">
+ 		<id column="USER_ID" jdbcType="VARCHAR" property="userId"/><!-- primary key -->
+ 		<result column="USER_PW" jdbcType="VARCHAR" property="userPw"/>
+ 		<result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+ 		<result column="USER_BIRTH" jdbcType="TIMESTAMP" property="userBirth"/>
+ 		<result column="USER_GENDER" jdbcType="CHAR" property="userGender"/>
+ 		<result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+ 		<result column="USER_ADDR" jdbcType="VARCHAR" property="userAddr"/>
+ 		<result column="USER_PH1" jdbcType="VARCHAR" property="userPh1"/>
+ 		<result column="USER_PH2" jdbcType="VARCHAR" property="userPh2"/>
+ 		<result column="USER_REGIST" jdbcType="TIMESTAMP" property="userRegist"/>
+ 	</resultMap>
  	<insert id="memberInsert" parameterType="memDTO">
  		 insert into 
  		 MEMBER(<include refid="baseColumn" />)
@@ -22,5 +34,9 @@
  	</update>
  	<select id="memberUserEmail" resultType="string">
  		select USER_EMAIL from MEMBER
+ 	</select>
+ 	<select id="userCheck" parameterType="memDTO" resultMap="baseMember">
+ 		select <include refid="baseColumn" />
+ 		from MEMBER where USER_ID = #{userId}
  	</select>
 </mapper>

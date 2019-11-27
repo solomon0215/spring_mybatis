@@ -12,4 +12,5 @@
 <bean class="Controller.Member.MemberController"/>
 <bean class="Controller.Member.MemberMailController"/>
 <bean class="Controller.Member.MemberAllMailingController"/>
+<bean class="Controller.Member.MemberLogController"/>
 </beans>

@@ -13,4 +13,5 @@
 <bean id="memberRegMailService" class="Serviec.Member.MemberRegMailService"/> 
 <bean id="memberOkService" class="Serviec.Member.MemberOkService"/> 
 <bean id="emailAllService" class="Serviec.Member.EmailAllService"/> 
+<bean id="memberLoginService" class="Serviec.Member.MemberLoginService"/> 
 </beans>

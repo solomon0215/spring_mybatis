@@ -10,7 +10,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd"
 		<property name="protocol" value="smtps" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="username" value="alswo0215@gmail.com" />
-		<property name="password" value="" />
+		<property name="password" value="alsqhd12@" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.starttls.enable">true</prop>

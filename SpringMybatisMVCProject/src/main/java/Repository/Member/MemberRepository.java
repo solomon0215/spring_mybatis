@@ -36,4 +36,9 @@ public class MemberRepository {
 		list =sqlSession.selectList(statement);
 		return list;
 	}
+	
+	public MemberDTO userCheck(MemberDTO member) {
+		String statement = namespace + ".userCheck";
+		return sqlSession.selectOne(statement, member);
+	}
 }

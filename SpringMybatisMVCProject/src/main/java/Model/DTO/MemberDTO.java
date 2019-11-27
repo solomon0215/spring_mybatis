@@ -1,8 +1,9 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-
-public class MemberDTO {
+@SuppressWarnings("serial")
+public class MemberDTO  implements Serializable{
 	String userId ;
 	String userPw  ; 
 	String userName;
