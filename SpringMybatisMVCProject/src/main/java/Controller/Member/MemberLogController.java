@@ -1,5 +1,6 @@
 package Controller.Member;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class MemberLogController {
 	@Autowired
 	MemberLoginService memberLoginService;
 	@RequestMapping(method = RequestMethod.POST)
-	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session) {
+	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse reponse) {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		if(errors.hasErrors()) {
 			return "Main/main";
 		}
-		Integer i = memberLoginService.loginPro(session, loginCommand);
+		Integer i = memberLoginService.loginPro(session, loginCommand, reponse);
 		if(i == 0){
 			errors.rejectValue("id1", "notId");
 			return "Main/main";
@@ -32,11 +33,11 @@ public class MemberLogController {
 			return "Main/main";
 		}
 		
-		return "redirect:/main";
+		return "redirect:main";
 	}
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginPro() {
 		
-		return "redirect:/main";
+		return "redirect:main";
 	}
 }

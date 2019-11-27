@@ -39,4 +39,25 @@
  		select <include refid="baseColumn" />
  		from MEMBER where USER_ID = #{userId}
  	</select>
+ 	<update id="memberUpdate" parameterType="memDTO">
+ 		update member
+ 		<trim prefix="set" suffixOverrides=",">
+ 			<if test="userEmail != null">
+ 			USER_EMAIL = #{userEmail},
+ 			</if>
+ 			USER_ADDR = #{userAddr},
+ 			USER_PH1 = #{userPh1},
+ 			<choose>
+ 				<when test="userPh2 != null">
+					USER_PH2 = #{userPh2}
+ 				</when>
+ 				<when test="userPh2 == null">
+ 					USER_PH2 = null	
+ 				</when>
+ 			</choose>
+ 		</trim>
+ 		<where>
+ 			USER_ID = #{userId} and USER_PW = #{userPw}
+ 		</where> 
+ 	</update>
 </mapper>

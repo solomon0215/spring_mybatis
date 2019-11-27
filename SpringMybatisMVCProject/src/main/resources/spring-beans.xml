@@ -7,11 +7,16 @@
 	    http://www.springframework.org/schema/context
 	    http://www.springframework.org/schema/context/spring-context.xsd"
 >
-<context:annotation-config />
-<bean id="memberRepository" class="Repository.Member.MemberRepository"/> 
-<bean id="memberJoinService" class="Serviec.Member.MemberJoinService"/> 
-<bean id="memberRegMailService" class="Serviec.Member.MemberRegMailService"/> 
-<bean id="memberOkService" class="Serviec.Member.MemberOkService"/> 
-<bean id="emailAllService" class="Serviec.Member.EmailAllService"/> 
-<bean id="memberLoginService" class="Serviec.Member.MemberLoginService"/> 
+	<context:annotation-config />
+	<bean id="memberRepository" class="Repository.Member.MemberRepository"/> 
+	<bean id="memberJoinService" class="Serviec.Member.MemberJoinService"/> 
+	<bean id="memberRegMailService" class="Serviec.Member.MemberRegMailService"/> 
+	<bean id="memberOkService" class="Serviec.Member.MemberOkService"/> 
+	<bean id="emailAllService" class="Serviec.Member.EmailAllService"/> 
+	<bean id="memberLoginService" class="Serviec.Member.MemberLoginService"/> 
+	<bean id="memberLogoutService" class="Serviec.Member.MemberLogoutService"/> 
+	<bean id="mainService" class="Service.Main.MainService"/> 
+	<bean id="memberDetailService" class="Serviec.Member.MemberDetailService"/>
+	<bean id="memberModifyService" class="Serviec.Member.MemberModifyService"/>
+	
 </beans>

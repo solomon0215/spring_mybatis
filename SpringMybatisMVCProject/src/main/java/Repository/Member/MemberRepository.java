@@ -41,4 +41,9 @@ public class MemberRepository {
 		String statement = namespace + ".userCheck";
 		return sqlSession.selectOne(statement, member);
 	}
+	
+	public Integer memberUpdate(MemberDTO dto) {
+		String statement = namespace + ".memberUpdate";
+		return sqlSession.update(statement, dto);
+	}
 }
