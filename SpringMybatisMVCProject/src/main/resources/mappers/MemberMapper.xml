@@ -76,4 +76,22 @@
  			USER_ID = #{userId} and USER_PW = #{pw1}
  		</where>
  	</update>
+ 	
+ 	<select id="memberList" parameterType="startEnd"  resultMap="baseMember">
+ 		select rn, <include refid="baseColumn"/>
+ 		from
+ 		(select rownum rn,<include refid="baseColumn"/>
+ 		from 
+ 		(select <include refid="baseColumn"/> 
+ 		from member
+ 		order by USER_REGIST desc))
+ 		<where >
+ 			rn &gt;= #{startRow} and rn &lt;= #{endRow}
+ 		</where>
+ 	</select>
+ 	
+ 	<select id="memberCount" resultType="int">
+ 		select count(*)
+ 		from member
+ 	</select>
 </mapper>

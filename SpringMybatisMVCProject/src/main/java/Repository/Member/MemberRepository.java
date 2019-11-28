@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import Model.DTO.MemberDTO;
 import Model.DTO.PasswordChangeDTO;
+import Model.DTO.StartEndPage;
 
 @Repository
 public class MemberRepository {
@@ -55,5 +56,16 @@ public class MemberRepository {
 	public Integer updatePassword(PasswordChangeDTO pwchange) {
 		String statement = namespace + ".updatePassword";
 		return sqlSession.update(statement, pwchange);
+	}
+	public List<MemberDTO> getMemberList(Integer page,Integer limit){
+		Long startRow = ((long)page-1)*10+1; 
+		Long endRow = startRow + limit -1;
+		StartEndPage startEndPage = new StartEndPage(startRow, endRow);
+		String statement = namespace + ".memberList";
+		return sqlSession.selectList(statement, startEndPage);
+	}
+	public Integer getListCount() {
+		String statement  = namespace + ".memberCount";
+		return sqlSession.selectOne(statement);
 	}
 }

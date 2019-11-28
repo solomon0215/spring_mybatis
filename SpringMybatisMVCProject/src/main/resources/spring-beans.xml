@@ -20,5 +20,6 @@
 	<bean id="memberModifyService" class="Serviec.Member.MemberModifyService"/>
 	<bean id="pwModifyService" class="Serviec.Member.PwModifyService"/>
 	<bean id="changePasswordModifyService" class="Serviec.Member.ChangePasswordModifyService"/>
+	<bean id="memberListService" class="Serviec.Member.MemberListService"/>
 	
 </beans>

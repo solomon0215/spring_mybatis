@@ -41,6 +41,7 @@
 </table>
 </form:form>
 </c:if>
+${authInfo.name}님 환영합니다.
 <!-- 로그인 되었을 때 -->
 <c:if test="${!empty authInfo}">
 <a href="member/memberDetail">내 정보</a>
