@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import Command.Member.ListCommand;
 import Model.DTO.MemberDTO;
 import Repository.Member.MemberRepository;
 
@@ -13,10 +14,10 @@ import Repository.Member.MemberRepository;
 public class MemberListService {
 	@Autowired
 	MemberRepository memberRepository;
-	public String memberList(Model model, Integer page) {
+	public String memberList(Model model, Integer page,ListCommand listCommand) {
 		int limit = 10;
-		List<MemberDTO> list = memberRepository.getMemberList(page, limit);
-		int listCount = memberRepository.getListCount();
+		List<MemberDTO> list = memberRepository.getMemberList(page, limit,listCommand);
+		int listCount = memberRepository.getListCount(listCommand);
 		int maxPage = (int) ((double)listCount/limit +0.95);
 		int startPage  = (int) (((double)page / 10 +0.9)-1) *10 +1;
 		int endPage = startPage +10 -1;

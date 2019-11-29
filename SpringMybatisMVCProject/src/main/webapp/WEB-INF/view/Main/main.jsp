@@ -48,9 +48,11 @@ ${authInfo.name}님 환영합니다.
 <a href="logout" >로그아웃</a>
 <a href ="member/list">회원리스트</a>
 <a href ="#">공지사항 게시판</a>
+<a href ="comment/commentList">댓글 게시판</a>
 <a href ="board/answerBoardList">답변형 게시판</a>
 <a href ="goodsList.gd">상품목록</a>
 <a href ="memberAllMail">단체 메일 보내기</a>
+<a href ="survey">설문지</a>
 </c:if>
 </body>
 </html>

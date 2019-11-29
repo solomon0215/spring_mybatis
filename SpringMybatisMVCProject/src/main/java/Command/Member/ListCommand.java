@@ -1,19 +1,27 @@
 package Command.Member;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ListCommand {
-	String from;
-	String to;
-	public String getFrom() {
+	@DateTimeFormat(pattern = "yyyyMMdd")
+	Date from;
+	@DateTimeFormat(pattern = "yyyyMMdd")
+	Date to;
+	public Date getFrom() {
 		return from;
 	}
-	public void setFrom(String from) {
+	public void setFrom(Date from) {
 		this.from = from;
 	}
-	public String getTo() {
+	public Date getTo() {
 		return to;
 	}
-	public void setTo(String to) {
+	public void setTo(Date to) {
 		this.to = to;
 	}
+
+	
 	
 }

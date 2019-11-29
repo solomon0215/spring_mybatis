@@ -18,5 +18,6 @@
 	<bean class="Controller.Member.ChangePasswordController"/>
 	<bean class="Controller.Member.ChangePasswordModifyController"/>
 	<bean class="Controller.Member.MemberListController"/>
+	<bean class="Controller.Survey.SurveyController"/>
 	
 </beans>

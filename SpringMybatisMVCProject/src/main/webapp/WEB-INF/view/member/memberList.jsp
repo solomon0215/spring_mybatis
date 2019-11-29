@@ -43,17 +43,17 @@
 				[이전]&nbsp;
 				</c:if>
 				<c:if test="${page>1 }">
-				<a href="memberList?page=${page-1}">[이전]</a>&nbsp;	
+				<a href="list?page=${page-1}">[이전]</a>&nbsp;	
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<a href="memberList?page=${i}">[${i}]</a>&nbsp;
+					<a href="list?page=${i}">[${i}]</a>&nbsp;
 				</c:forEach>
 				
 				<c:if test="${page>=maxPage }">
 					[다음]&nbsp;
 				</c:if>
 				<c:if test="${page<maxPage }">
-				<a href="memberList?page=${page+1}">[다음]</a>&nbsp;
+				<a href="list?page=${page+1}">[다음]</a>&nbsp;
 				</c:if>		
 				
 				

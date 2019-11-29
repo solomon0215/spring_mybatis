@@ -84,14 +84,24 @@
  		from 
  		(select <include refid="baseColumn"/> 
  		from member
+ 		<where>
+ 			<if test="listCommand.from != null and listCommand.to != null  ">
+ 				USER_REGIST between #{listCommand.from} and #{listCommand.to} 
+ 			</if>
+ 		</where>
  		order by USER_REGIST desc))
- 		<where >
+ 		<where>
  			rn &gt;= #{startRow} and rn &lt;= #{endRow}
  		</where>
  	</select>
  	
- 	<select id="memberCount" resultType="int">
- 		select count(*)
- 		from member
+ 	<select id="memberCount" resultType="int" parameterType="listCMD">
+ 		select count(*) from member
+ 		<trim prefix="where" prefixOverrides="AND | OR">
+ 			<if test="from != null and to != null  ">
+ 				and USER_REGIST between #{from} and #{to} 
+ 			</if>
+ 		</trim>
+ 		
  	</select>
 </mapper>
