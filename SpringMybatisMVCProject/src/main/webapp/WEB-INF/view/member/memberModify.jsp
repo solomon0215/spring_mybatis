@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ include file = "../publicFile/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +29,6 @@ $(function(){
 		<td >&nbsp;</td></tr>
 	<tr><td><spring:message code="userModify" /></td><td>
 		<form:hidden path="userId" id="id1"/>
-		<form:errors path ="userId"/>
 		<div id = "userId"></div></td></tr>
 	<tr><td><spring:message code="password" /></td>
 		<td><input type="password" id="pw" name ="userPw" /><br />
@@ -41,17 +39,12 @@ $(function(){
 		<td >&nbsp;</td></tr>
 	<tr><td><spring:message code="name" /></td>
 		<td><div id = "userName"></div>
-		<form:hidden path="userName" id="name"/>
-		<form:errors path ="userName"/>
-		</td>
+		<form:hidden path="userName" id="name"/></td>
 	</tr>
 	<tr><td> <spring:message code="birth.gender" /></td>
 		<td><div id = "birth"></div>
 		<form:hidden path="userBirth" id="userBirth" />
-		<form:errors path ="userBirth"/>
-		<form:hidden path="userGender" id="userGender"/>
-		<form:errors path ="userGender"/>
-		</td>
+		<form:hidden path="userGender" id="userGender"/></td>
 	</tr>
 	<tr><td><spring:message code="email" /></td>
 	    <td><form:input  id ="email" path ="userEmail" /><br />

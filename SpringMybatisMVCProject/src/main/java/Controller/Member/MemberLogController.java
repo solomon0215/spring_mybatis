@@ -9,8 +9,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Command.Login.LoginCommand;
-import Serviec.Member.MemberLoginService;
+import Command.LoginCommand;
+import Service.Member.MemberLoginService;
 import Validator.LoginCommandValidator;
 
 @Controller
@@ -18,26 +18,27 @@ import Validator.LoginCommandValidator;
 public class MemberLogController {
 	@Autowired
 	MemberLoginService memberLoginService;
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public String loginPro(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse reponse) {
+	public String loginPro(LoginCommand loginCommand,
+			Errors errors,HttpSession session,
+			HttpServletResponse response) {
 		new LoginCommandValidator().validate(loginCommand, errors);
-		if(errors.hasErrors()) {
+		if(errors.hasErrors()) 
 			return "Main/main";
-		}
-		Integer i = memberLoginService.loginPro(session, loginCommand, reponse);
-		if(i == 0){
+		Integer i = memberLoginService.loginPro(
+				session, loginCommand,response);
+		if(i == 0 ) {
 			errors.rejectValue("id1", "notId");
 			return "Main/main";
 		}else if(i == -1) {
 			errors.rejectValue("pw", "wrong");
 			return "Main/main";
 		}
-		
-		return "redirect:main";
+		return "redirect:/main";
 	}
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginPro() {
-		
-		return "redirect:main";
+		return "redirect:/main";
 	}
 }

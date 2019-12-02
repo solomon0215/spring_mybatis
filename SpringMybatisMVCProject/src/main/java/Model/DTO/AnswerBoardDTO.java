@@ -3,20 +3,20 @@ package Model.DTO;
 import java.sql.Timestamp;
 
 public class AnswerBoardDTO {
-	private Long boardNum;
-	private String userId;
-	private String boardName;
-	private String boardPass;
-	private String boardSubject;
-	private String boardContent;
-	private Long boardReRef;
-	private Long boardReLev;
-	private Long boardReSeq;
-	private Long boardReadcount;
-	private Timestamp boardDate;
-	private String originalFilename;
-	private String storeFilename;
-	private String fileSize;
+	Long boardNum	;  // 글번
+	String userId ;    // 글쓴이의 아이디 
+	String  boardName ; // 글쓴이의  이름 
+	String boardPass ; // 비밀번호 
+	String boardSubject ;
+	String boardContent  ;
+	Long boardReRef    ;
+	Long boardReLev   ;
+	Long boardReSeq  ;
+	Long boardReadcount ;
+	Timestamp  boardDate ;
+	String originalFilename ;
+	String storeFilename ;
+	String fileSize ;
 	public Long getBoardNum() {
 		return boardNum;
 	}
@@ -101,6 +101,4 @@ public class AnswerBoardDTO {
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
-	
-	
 }

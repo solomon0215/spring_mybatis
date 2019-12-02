@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Command.Survey.AnsweredData;
+import Command.AnsweredData;
+import Command.Question;
 
 @Controller
 @RequestMapping("/survey")
@@ -20,15 +21,20 @@ public class SurveyController {
 		model.addAttribute("questions", questions);
 		return "survey/surveyForm";
 	}
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public String submit(@ModelAttribute("ansData") AnsweredData data) {
 		return "survey/submitted";
 	}
 	private List<Question> createQuestions(){
-		Question q1 = new Question( "´ç½ÅÀÇ ¿ªÇÒÀº ¹«¾ùÀÔ´Ï±î?" , Arrays.asList("¼­ºñ","ÇÁ·ĞÆ®","Ç®½ºÅÃ"));
-		Question q2 = new Question("ÀÚÁÖ »ç¿ëÇÏ´Â °³¹ß Åø",Arrays.asList("Ecliops","Intellij", "Sublime"));
-		Question q3 = new Question("ÇÏ°í ½ÍÀº ¸»À» Àû¾îÁÖ¼¼¿ä");
-		return Arrays.asList(q1,q2,q3);
+		Question q1 = new Question("ë‹¹ì‹ ì˜ ì—­í• ì€ ë¬´ì—‡ì…ë‹ˆê¹Œ?", 
+				Arrays.asList("ì„œë²„", "í”„ë¡ íŠ¸", "í’€ìŠ¤íƒ"));
+		Question q2 = new Question("ë§ì´ ì‚¬ìš©í•˜ëŠ” ê°œë°œë„êµ¬ëŠ” ë¬´ì—‡ì…ë‹ˆê¹Œ?", 
+				Arrays.asList("ì´í´ë¦½ìŠ¤", "ì¸í…”ë¦¬J", "ì„œë¸Œë¼ì„"));
+		Question q3 = new Question("í•˜ê³  ì‹¶ì€ ë§ì„ ì ì–´ì£¼ì„¸ìš”.");
+		return Arrays.asList(q1, q2, q3);
 	}
 }
+
+
+
+

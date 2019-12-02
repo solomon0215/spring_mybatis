@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Repository.Comment.CommentMapper">
+	
+<cache />
+	<sql id="basecolumn">
+		comment_no,user_id,comment_subject,comment_content,
+		reg_date,IP_ADDR
+	</sql>
+	<resultMap type="Comment" id="baseCommentMap">
+		<!-- setter -->
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+		<result column="user_id" jdbcType="VARCHAR" property="userId"/>
+		<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+		<result column="comment_content" jdbcType="VARCHAR" property="commentContent"/>
+		<result column="reg_date" jdbcType="TIMESTAMP" property="regDate"/>
+		<result column="IP_ADDR" jdbcType="VARCHAR" property="ipAddr"/>
+	</resultMap>
+	<resultMap type="commentDTO" id="constructorResultMap">
+		<constructor>
+			<idArg column="comment_no" javaType="long" />
+			<arg column="user_id" javaType="string" />
+			<arg column="comment_subject" javaType="string" />
+			<arg column="comment_content" javaType="string"/>
+			<arg column="reg_date" javaType="java.sql.Timestamp" />
+			<arg column="IP_ADDR" javaType="string" />
+		</constructor>
+	</resultMap>
+	
+	<insert id="insertComment" parameterType="commentDTO"> 
+		insert into comment1 (<include refid="basecolumn" />)
+		values(board_seq.nextval, #{userId}, #{commentSubject} ,
+		#{commentContent}, sysdate, #{ipAddr})
+	</insert>
+	<!-- 1:N -->
+	<resultMap type="CommentReply" id="commentCollectionMap">
+		<association property="commentDTO" javaType="CommentDTO">
+			<id column="comment_no" jdbcType="VARCHAR" property="commentNo"/>
+			<result column="user_id" jdbcType="VARCHAR" property="userId"/>
+			<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject"/>
+			<result column="comment_content" jdbcType="VARCHAR" 
+						property="commentContent"/>
+			<result column="reg_date" jdbcType="VARCHAR" property="regDate"/>
+			<result column="IP_ADDR" jdbcType="VARCHAR" property="ipAddr"/>
+		</association>
+		<collection property="replys" ofType="replyDTO">
+			<id column="REPLY_NO" jdbcType="BIGINT" property="replyNo"/>
+			<result column="USERID" jdbcType="VARCHAR" property="userId"/>
+			<result column="COMMENTCONTENT" jdbcType="VARCHAR" 
+										property="commentContent"/>
+			<result column="REGDATE" jdbcType="TIMESTAMP" property="regDate"/>
+			<result column="IPADDR" jdbcType="VARCHAR" property="ipAddr"/>
+		</collection>
+	</resultMap>
+	<select resultMap = "commentCollectionMap" id = "commentCollection" 
+		parameterType = "string"> 
+	 	select c.comment_no comment_no,
+	 		   c.user_id user_id,
+	 		   c.comment_subject comment_subject, 
+	 		   c.comment_content comment_content,
+		       c.reg_date reg_date,
+		       c.IP_ADDR IP_ADDR,
+		       r.REPLY_NO REPLY_NO,
+		       r.USER_ID USERID,
+		       r.COMMENT_CONTENT COMMENTCONTENT,
+		       r.REG_DATE REGDATE,
+		       r.IP_ADDR IPADDR
+	  	from comment1 c, reply r
+	  	where c.COMMENT_NO = r.COMMENT_NO
+	  	and c.comment_no = #{commentNo}
+	</select>
+	<insert id="replyInsert" parameterType="replyDTO"> 
+		insert into reply(REPLY_NO,COMMENT_NO,USER_ID,
+		COMMENT_CONTENT,REG_DATE,IP_ADDR)
+		values(board_seq.nextval,#{commentNo},
+		#{userId},#{commentContent},sysdate,#{ipAddr})
+	</insert>
+	<select id="selectCommentForeach" parameterType="hashmap" 
+						resultMap="baseCommentMap">
+		select 
+			<include refid="basecolumn" />
+		from comment1
+		<where>
+			<if test="commentNos != null">
+				comment_no IN 
+				<foreach collection="commentNos" item="commentNo" index="index" 
+					open="(" close=")" separator=","> <!-- 가로 열기 닫기 구분하기 -->
+					#{commentNo}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<!--  1대 1 -->	
+	<resultMap type="CommentUser" id="associationResultMap">
+		<!-- CommentUser.comment setter -->
+		<association property="commentDTO" javaType="CommentDTO" >
+		<!-- Comment에 있는  setter  -->
+			<id column="comment_no" jdbcType="BIGINT" property="commentNo"/>
+			<result column="user_id" jdbcType="VARCHAR" property="userId"/>
+			<result column="comment_subject" jdbcType="VARCHAR" 
+						property="commentSubject"/>
+			<result column="reg_date" jdbcType="TIMESTAMP" 
+						property="regDate"/>
+		</association>
+		<association property="memberDTO" javaType="memberDTO">
+			<!-- user setter -->
+			<!-- user.setMemberId(aaaa) -->
+			<id column="user_id" jdbcType="VARCHAR" property="userId"/>
+			<!-- user.setMemberName(dffdf); -->
+			<result column="user_name" jdbcType="VARCHAR" property="userName"/>
+		</association>
+	</resultMap>
+	<select id="commentAssociation" parameterType = "string"
+			resultMap="associationResultMap">
+			select
+		        c.comment_no as comment_no, 
+				c.user_id as user_id, 
+				c.comment_subject as comment_subject,
+				c.reg_date as reg_date,
+				m.user_name	as 	user_name
+			from comment1 c, member m
+		<where>
+			c.user_id = m.user_id
+			<if test="value != null">   
+				and comment_no = #{commentNo}
+			</if>
+    	</where> 
+	</select>
+	<select id="commentAllSelect" parameterType = "string"
+			resultMap="baseCommentMap">
+			select
+		       <include refid="basecolumn" />
+			from comment1
+		<where>
+			<if test="value != null">   
+				comment_no = #{commentNo}
+			</if>
+    	</where> 
+	</select>
+</mapper>

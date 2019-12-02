@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import Serviec.Member.MemberLogoutService;
+import Service.Member.MemberLogoutService;
 
 @Controller
 public class MemberLogoutController {
 	@Autowired
-	MemberLogoutService memberLogoutService;
+	private MemberLogoutService  memberLogoutService; 
 	
 	@RequestMapping("/logout")
-	public String logout(HttpSession session, HttpServletResponse response) {
-		memberLogoutService.logout(session,response);
-		return "redirect:main";
+	public String logout(HttpSession session,
+			HttpServletResponse response) {
+		memberLogoutService.logout(session, response);
+		return "redirect:/main";
 	}
 }

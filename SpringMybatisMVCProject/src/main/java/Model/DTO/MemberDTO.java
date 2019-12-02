@@ -2,6 +2,7 @@ package Model.DTO;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 @SuppressWarnings("serial")
 public class MemberDTO  implements Serializable{
 	String userId ;
@@ -14,13 +15,13 @@ public class MemberDTO  implements Serializable{
 	String userPh1;
 	String userPh2;
 	Timestamp userRegist;
-	String userCk;
+	String userCK;
 	
-	public String getUserCk() {
-		return userCk;
+	public String getUserCK() {
+		return userCK;
 	}
-	public void setUserCk(String userCk) {
-		this.userCk = userCk;
+	public void setUserCK(String userCK) {
+		this.userCK = userCK;
 	}
 	public String getUserId() {
 		return userId;

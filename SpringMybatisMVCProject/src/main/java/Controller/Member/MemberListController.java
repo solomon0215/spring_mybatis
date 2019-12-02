@@ -8,19 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import Command.Member.ListCommand;
-import Serviec.Member.MemberListService;
+import Command.ListCommand;
+import Service.Member.MemberListService;
 
 @Controller
 public class MemberListController {
 	@Autowired
-	MemberListService	memberListService;
+	MemberListService memberListService;
 	@RequestMapping("/member/list")
-	public String memberList(@RequestParam(value = "page",defaultValue = "1") Integer page, Model model, ListCommand listCommand, Errors errors) {
-
-		if(errors.hasErrors()) {
+	public String member_list(@RequestParam(value = "page" ,
+	defaultValue = "1")	Integer page, Model model,
+			ListCommand listCommand, Errors errors) {
+		if (errors.hasErrors()) {
 			return "member/memberList";
 		}
 		return memberListService.memberList(model, page,listCommand);
 	}
 }
+
+
+
+

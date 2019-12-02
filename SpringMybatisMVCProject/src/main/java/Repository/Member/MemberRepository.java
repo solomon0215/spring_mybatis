@@ -6,67 +6,65 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import Command.Member.ListCommand;
+import Command.ListCommand;
 import Model.DTO.MemberDTO;
 import Model.DTO.PasswordChangeDTO;
-import Model.DTO.StartEndPage;
+import Model.DTO.StartEndPageDTO;
 
 @Repository
 public class MemberRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final String namespace="MemberMapper";
+	private final String namespace = "MemberMapper";
 	
-	public Integer insertMember(MemberDTO dto) {
+	public Integer inserMember(MemberDTO dto) {
 		String statement = namespace + ".memberInsert";
-		Integer result = sqlSession.insert(statement,dto);
+		Integer result = sqlSession.insert(statement, dto);
 		return result;
 	}
-	
-	public Integer updateCheck(String num, String reciver, String name) {
-		MemberDTO dto = new MemberDTO();
-		dto.setUserEmail(name);
-		dto.setUserName(name);
-		dto.setUserCk(num);
-		String statement = namespace + ".memberUserCk";
-		
-		return sqlSession.update(statement, dto);
+	public Integer getListCount(ListCommand listCommand) {
+		String statement =  namespace + ".memberCount"; 
+		return sqlSession.selectOne(statement,listCommand);
 	}
-	public List<String> selectMemberAll(){
-		String statement = namespace + ".memberUserEmail";
-		List<String> list = null;
-		list =sqlSession.selectList(statement);
-		return list;
-	}
-	
-	public MemberDTO userCheck(MemberDTO member) {
-		String statement = namespace + ".userCheck";
-		return sqlSession.selectOne(statement, member);
-	}
-	
-	public Integer memberUpdate(MemberDTO dto) {
-		String statement = namespace + ".memberUpdate";
-		return sqlSession.update(statement, dto);
-	}
-	public MemberDTO memberCheck(MemberDTO member) {
-		String statement = namespace + ".userCheck";
-		return sqlSession.selectOne(statement, member);
+	public List<MemberDTO> getMemberList(int page, int limit,
+			ListCommand listCommand){
+		Long startRow = ((long)page -1 ) * 10 +1;
+		Long endRow = startRow + limit -1;
+		StartEndPageDTO startEndPage =
+				new StartEndPageDTO(startRow, endRow, listCommand);
+		String statement =  namespace + ".memberList"; 
+		return sqlSession.selectList(statement, startEndPage);
 	}
 	
 	public Integer updatePassword(PasswordChangeDTO pwchange) {
 		String statement = namespace + ".updatePassword";
 		return sqlSession.update(statement, pwchange);
 	}
-	public List<MemberDTO> getMemberList(Integer page,Integer limit,ListCommand listCommand){
-		Long startRow = ((long)page-1)*10+1; 
-		Long endRow = startRow + limit -1;
-		StartEndPage startEndPage = new StartEndPage(startRow, endRow,listCommand);
-		String statement = namespace + ".memberList";
-		return sqlSession.selectList(statement, startEndPage);
+	public MemberDTO memberCheck(MemberDTO member) {
+		String statement =  namespace + ".userCheck";
+		return sqlSession.selectOne(statement, member);
 	}
-	public Integer getListCount(ListCommand listCommand) {
-		String statement  = namespace + ".memberCount";
-		return sqlSession.selectOne(statement,listCommand);
+	public Integer memberUpdate(MemberDTO member) {
+		String statement =  namespace + ".memberUpdate";
+		return sqlSession.update(statement, member);
+	}
+	public MemberDTO userCheck(MemberDTO member) {
+		String statement =  namespace + ".userCheck";
+		return sqlSession.selectOne(statement, member);
+	}
+	public Integer updateCheck(String num,String reciver,String name) {
+		MemberDTO dto = new MemberDTO();
+		dto.setUserEmail(reciver);
+		dto.setUserName(name);
+		dto.setUserCK(num);
+		String statement = namespace + ".memberUserCk";
+		return sqlSession.update(statement,dto);  // 0, 1
+	}
+	public List<String> selectMemberAll(){
+		List<String> result = null;
+		String statement =  namespace + ".selectMemberAll";
+		result = sqlSession.selectList(statement);
+		return result;
 	}
 }

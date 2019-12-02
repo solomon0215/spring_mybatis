@@ -11,15 +11,16 @@
   	<java-version>1.8</java-version>
   	<!-- 최신 버전은 4.3.3이지만 호환성을 위해 4.3.0으로 조정함 -->
   	<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
-  	<org.aspectj-version>1.6.10</org.aspectj-version>
   	<org.slf4j-version>1.7.21</org.slf4j-version>
   </properties>
+  
   <repositories>
   	<repository>
   		<id>codeId</id>
-  		<url>http://code.lds.org/nexus/content/groups/main-repo</url>
+  		<url>https://code.lds.org/nexus/content/groups/main-repo</url>
   	</repository>
   </repositories>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,64 +28,73 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <!-- Mybatis -->
-    <dependency>
-    	<groupId>org.mybatis</groupId>
-    	<artifactId>mybatis</artifactId>
-    	<version>3.2.8</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.mybatis</groupId>
-    	<artifactId>mybatis-spring</artifactId>
-    	<version>1.2.2</version>
-    </dependency>
-	<!-- Spring -->
-    <dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context</artifactId>
-		<version>${org.springframework-version}</version>
+  <!-- oracle -->
+  	<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>11.2.0.3</version>
+	</dependency>
+<!-- mybatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.2.8</version>
 	</dependency>
 	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-webmvc</artifactId>
-  		<version>${org.springframework-version} </version>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+<!-- Spring -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>4.3.0.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>4.3.0.RELEASE</version>
+    </dependency>
+   	<!-- jdbc -->  
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jdbc</artifactId>
+    	<version>4.3.0.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.mchange</groupId>
+    	<artifactId>c3p0</artifactId>
+    	<version>0.9.2.1</version>
+    </dependency>
+  	<!-- Servlet -->
+  	<dependency>
+  		<groupId>javax.servlet.jsp</groupId>
+  		<artifactId>jsp-api</artifactId>
+  		<version>2.1</version>
   	</dependency>
-    <!-- websocket-api -->
-		<dependency>
-		    <groupId>javax.websocket</groupId>
-		    <artifactId>javax.websocket-api</artifactId>
-		    <version>1.1</version>
-		    <scope>provided</scope>
-		</dependency>
-	<!-- Servlet -->
-	<dependency>
-		<groupId>javax.servlet.jsp</groupId>
-		<artifactId>jsp-api</artifactId>
-		<version>2.1</version>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>javax.servlet-api</artifactId>
-		<version>3.1.0</version>
-	</dependency>
-	<!-- jstl -->
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>jstl</artifactId>
-		<version>1.2</version>
-	</dependency>
-	<!-- email -->
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>javax.servlet-api</artifactId>
+  		<version>3.1.0</version>
+  	</dependency>
+  	<!-- jstl -->
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>jstl</artifactId>
+  		<version>1.2</version>
+  	</dependency>
+  	<!-- email -->
   	<dependency>
 	    <groupId>javax.mail</groupId>
 		<artifactId>mail</artifactId>
 		<version>1.4.7</version>
 	</dependency>
 	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context-support</artifactId>
-		<version>4.1.0.RELEASE</version>
-    </dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.1.0.RELEASE</version>
+   </dependency>
    <!-- 파일 객체 -->
 	<dependency>
 	    <groupId>commons-io</groupId>
@@ -96,68 +106,15 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.2.2</version>
 	</dependency>
-	<!-- jdbc -->
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-jdbc</artifactId>
-  		<version>${org.springframework-version} </version>
-  	</dependency>
-  	<dependency>
-		<groupId>com.mchange</groupId>
-		<artifactId>c3p0</artifactId>
-		<version>0.9.2.1</version>
-	</dependency>
- 	<!-- oracle -->
-    <dependency>
-		<groupId>com.oracle</groupId>
-		<artifactId>ojdbc6</artifactId>
-		<version>11.2.0.3</version>
-	</dependency>
-	<!-- Logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
+	<!-- Logging -->		 
+	<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
-			<scope>runtime</scope>
-		</dependency>
+			<version>1.2.17</version>
+	</dependency>    	
   </dependencies>
   <build>
-    <finalName>MVCSpringProject</finalName>
+    <finalName>SpringMybatisMVCProject</finalName>
     <plugins>
 		<plugin>
 			<artifactId>maven-compiler-plugin</artifactId>
@@ -171,3 +128,4 @@
 	</plugins>
   </build>
 </project>
+

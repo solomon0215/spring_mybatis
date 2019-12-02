@@ -22,5 +22,4 @@ public class PasswordChangeDTO {
 	public void setNewPw(String newPw) {
 		this.newPw = newPw;
 	}
-	
 }

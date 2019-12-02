@@ -4,8 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import Command.Member.ChangePwdCommand;
-import Command.Member.MemberCommand;
+import Command.ChangePwdCommand;
 
 public class ChangePwdCommandValidator implements Validator{
 	

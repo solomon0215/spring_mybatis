@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file = "../publicFile/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,26 +35,25 @@
 			   pattern="yyyy-MM-dd"/></td>
 		</tr>
 	</c:forEach>
-		<tr align="center" height="20">
-			<td colspan=3>
-				<c:if test="${page <=1 }">
-				[이전]&nbsp;
-				</c:if>
-				<c:if test="${page>1 }">
-				<a href="list?page=${page-1}">[이전]</a>&nbsp;	
-				</c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<a href="list?page=${i}">[${i}]</a>&nbsp;
-				</c:forEach>
-				
-				<c:if test="${page>=maxPage }">
-					[다음]&nbsp;
-				</c:if>
-				<c:if test="${page<maxPage }">
-				<a href="list?page=${page+1}">[다음]</a>&nbsp;
-				</c:if>		
-				
-				
+		<tr align=center height=20>
+			<td colspan =3>
+			<c:if test="${page <= 1 }">
+				[이전]&nbsp; <!-- 첫 페이지  -->
+			</c:if>
+			<c:if test="${page > 1 }">
+				<a href = "list?page=${page -1 }">[이전]</a>&nbsp;
+			</c:if>
+			
+			<c:forEach var = "i" begin="${startPage }" end ="${ endPage}" >
+				<a href = "list?page=${i }">[ ${i } ]</a>&nbsp;
+			</c:forEach>
+			
+			<c:if test="${page >= maxPage }">	
+				[다음]&nbsp; <!-- 마지막 페이지  -->
+			</c:if>
+			<c:if test="${page < maxPage }">	
+				<a href = "list?page=${page +1 }">[다음]</a>&nbsp;
+			</c:if>
 			</td>
 		</tr>
 	</table>

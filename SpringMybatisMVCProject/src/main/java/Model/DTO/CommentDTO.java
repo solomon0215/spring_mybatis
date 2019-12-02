@@ -1,24 +1,26 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CommentDTO {
+@SuppressWarnings("serial")
+public class CommentDTO  implements Serializable {
 	private Long commentNo;
 	private String userId;
 	private String commentSubject;
 	private String commentContent;
 	private Timestamp regDate;
-	
-	public CommentDTO() {
-	}
-	
-	public CommentDTO(Long commentNo, String userId, String commentSubject, String commentContent, Timestamp regDate) {
+	private String ipAddr;
+	public CommentDTO() {}
+	public CommentDTO(Long commentNo, String userId, String commentSubject,
+			String commentContent, Timestamp regDate,String ipAddr) {
 		super();
 		this.commentNo = commentNo;
 		this.userId = userId;
 		this.commentSubject = commentSubject;
 		this.commentContent = commentContent;
 		this.regDate = regDate;
+		this.ipAddr = ipAddr;
 	}
 	public Long getCommentNo() {
 		return commentNo;
@@ -50,5 +52,10 @@ public class CommentDTO {
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
-
+	public String getIpAddr() {
+		return ipAddr;
+	}
+	public void setIpAddr(String ipAddr) {
+		this.ipAddr = ipAddr;
+	}
 }

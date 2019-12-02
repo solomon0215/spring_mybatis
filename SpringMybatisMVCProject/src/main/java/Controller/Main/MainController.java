@@ -9,28 +9,30 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Command.Login.LoginCommand;
+import Command.LoginCommand;
 import Service.Main.MainService;
 
 @Controller
-@RequestMapping("main")
+@RequestMapping("/main")
 public class MainController {
 	@Autowired
 	MainService mainService;
 	@RequestMapping(method = RequestMethod.GET)
-	public String form(LoginCommand loginCommand, 
-			@CookieValue(value="idStore", required = false) Cookie idStore,
-			@CookieValue(value="AutoLogin", required = false) Cookie AutoLogin,
+	public String form(LoginCommand loginCommand,
+			@CookieValue(value="idStore",required = false)
+			Cookie idStore,
+			@CookieValue(value="AutoLogin",required = false)
+			Cookie AutoLogin,
 			HttpSession session) {
 		if(idStore != null) {
 			loginCommand.setIdStore(true);
-			loginCommand.setId1(idStore.getValue());
+			loginCommand.setId1(idStore.getValue());	
 		}
-		if(AutoLogin != null) {
+		if(AutoLogin != null)
+		{
 			loginCommand.setId1(AutoLogin.getValue());
 			mainService.autoLogin(loginCommand,session);
 		}
-		
 		return "Main/main";
 	}
 }

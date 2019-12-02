@@ -8,42 +8,51 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import Command.Member.MemberCommand;
-import Serviec.Member.MemberDetailService;
-import Serviec.Member.MemberModifyService;
+import Command.MemberCommand;
+import Service.Member.MemberDetailService;
+import Service.Member.MemberModifyService;
 import Validator.MemberCommandValidator;
 
 @Controller
 public class MemberDetailController {
 	@Autowired
 	MemberDetailService memberDetailService;
-	@Autowired
+	@Autowired 
 	MemberModifyService memberModifyService;
 	@RequestMapping("/member/memberDetail")
-	public String detail(HttpSession session,Model model) {
+	public String detail(HttpSession session, Model model) {
 		memberDetailService.detail(session, model);
 		return "member/memberDetail";
 	}
 	@RequestMapping("/member/memberModify")
-	public String detail(HttpSession session,MemberCommand memberCommand) {
+	public String detail(HttpSession session, 
+			MemberCommand memberCommand) {
 		memberDetailService.modify(session, memberCommand);
 		return "member/memberModify";
 	}
 	@RequestMapping("/member/memberModifyPro")
-	public String modifyPro (MemberCommand memberCommand, Errors errors) {
+	public String ModifyPro(MemberCommand memberCommand,Errors errors) {
 		memberCommand.setUserPwCon(memberCommand.getUserPw());
 		new MemberCommandValidator().validate(memberCommand, errors);
-		System.out.println("------------------------------------------------------controll");
 		if(errors.hasErrors()) {
-			System.out.println("------------------------------------------------------hasErrors");
+			System.out.println("a");
 			return "member/memberModify";
 		}
-		System.out.println("------------------------------------------------------upadte");
 		Integer result = memberModifyService.modifyPro(memberCommand);
 		if(result == 0) {
-			System.out.println("------------------------------------------------------failed");
+			errors.rejectValue("userPw", "badPw");
 			return "member/memberModify";
 		}
 		return "redirect:/member/memberDetail";
 	}
 }
+
+
+
+
+
+
+
+
+
+

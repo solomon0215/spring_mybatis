@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>가입이 완료 되었습니다.</h2>
+가입이 완료되었습니다
 </body>
 </html>

@@ -8,8 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import Command.Member.ChangePwdCommand;
-import Serviec.Member.PwModifyService;
+import Command.ChangePwdCommand;
+import Service.Member.PwModifyService;
 import Validator.ChangePwdCommandValidator;
 
 @Controller
@@ -19,22 +19,22 @@ public class ChangePasswordController {
 	private PwModifyService pwModifyService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String form(ChangePwdCommand  changePwdCommand) {
-		return "member/memberPw";
+	public String form(ChangePwdCommand changePwdCommand) {
+		return "member/memberPw";// CurrentPassword만 있음.
 	}
-	
 	@RequestMapping(method = RequestMethod.POST)
-	public String submit(ChangePwdCommand changePwdCommand, HttpSession session,Errors errors) { 
+	public String submit(ChangePwdCommand changePwdCommand, 
+			Errors errors, HttpSession session) {
+		// CurrentPassword가 비었는지 확인 
 		changePwdCommand.setNewPassword(changePwdCommand.getCurrentPassword());
 		changePwdCommand.setReNewPassword(changePwdCommand.getCurrentPassword());
 		new ChangePwdCommandValidator().validate(changePwdCommand, errors);
 		if(errors.hasErrors()) {
 			return "member/memberPw";
 		}
-		String path = pwModifyService.pwModify(session, changePwdCommand, errors);
+		String path = pwModifyService.pwModify(session, changePwdCommand,
+				errors);
 		return path;
-	}
-	
-	
+	}	
 	
 }

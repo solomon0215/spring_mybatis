@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>이미 등록된 회원 입니다.</h2>
+이미가입이 완료 회원입니다.
 </body>
 </html>

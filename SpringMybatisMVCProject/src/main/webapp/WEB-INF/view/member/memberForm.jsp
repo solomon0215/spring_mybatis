@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ include file = "../publicFile/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,8 @@
 </head>
 <body>
 <form:form action="memberJoinAction" name = "frm" id="frm" 
-   method = "post" commandName = "memberCommand">
+   method = "post" commandName = "memberCommand" >
+
 	<table width = 600 align = "center" border = 1 >
 		<tr>
 	 		<td width = "200"><spring:message code="member.info" /></td>
