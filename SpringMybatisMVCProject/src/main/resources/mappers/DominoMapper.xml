@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DominoMapper">
+<cache />
+	<resultMap type="Model.DTO.ADTO" id="aresult">
+		<constructor> <!-- DTO 생성자를 이용한  값 가져오는 방식 -->
+			<idArg column="a" javaType="long"/> <!-- 프라이머리키 -->
+			<arg column="b" javaType="string"/>
+		</constructor>
+	</resultMap>
+	<resultMap type="Model.DTO.BDTO" id="bresult">
+		<id column="a" jdbcType="BIGINT" property="a"/><!-- setter 이용하기 -->
+		<id column="c" jdbcType="BIGINT" property="c"/>
+		<result column="d" jdbcType="VARCHAR" property="d"/>
+	</resultMap>
+	<resultMap type="Model.DTO.CDTO" id="cresult">
+		<id column="a" jdbcType="BIGINT" property="a"/><!-- setter 이용하기 -->
+		<id column="c" jdbcType="BIGINT" property="c"/>
+		<id column="e" jdbcType="BIGINT" property="e"/>
+		<result column="f" jdbcType="VARCHAR" property="f"/>
+	</resultMap>
+	<select id="selectB" parameterType="long" resultMap="bresult">
+		select a,c,d from b
+		where a= #{a}
+	</select>
+	<select id="selectA" resultMap="aresult">
+		select a,b from a
+	</select>
+	<select id="selectC" parameterType="Model.DTO.BDTO" resultMap="cresult">
+		select a,c,e,f from c
+		where a= #{a} and c=#{c}
+	</select>
+</mapper>

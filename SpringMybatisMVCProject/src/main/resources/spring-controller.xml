@@ -16,6 +16,8 @@
 <bean class="Controller.Member.MemberListController"/>
 <bean class="Controller.Survey.SurveyController"/>
 <bean class="Controller.Ajax.AjaxController"/>
+<bean class="Controller.Domino.DominoController"/>
+
 	
 
 </beans>

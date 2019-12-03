@@ -14,6 +14,7 @@
 		<typeAlias type="Model.DTO.ReplyDTO" alias ="replyDTO"/>
 		<typeAlias type="Model.DTO.UserCommentDTO" alias ="CommentUser"/>
 		<typeAlias type="Model.DTO.MemberDTO" alias ="memberDTO"/>
+		<typeAlias type="Model.DTO.BDTO" alias ="bdto"/>
 		
 	</typeAliases>
 </configuration>

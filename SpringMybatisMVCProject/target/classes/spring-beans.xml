@@ -8,6 +8,8 @@
 <bean id = "memberRepository" class="Repository.Member.MemberRepository" />
 <bean id = "memberRegMailService"
       class = "Service.Member.MemberRegMailService"/>
+<bean id = "dominoRepository" 
+			class = "Repository.Domino.DominoRepository"/>
 <bean id = "memberOkService"
       class = "Service.Member.MemberOkService"/>
 <bean id = "emailAllService"

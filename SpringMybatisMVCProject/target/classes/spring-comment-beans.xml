@@ -11,5 +11,8 @@
 
 <bean id = "commentService" 
 			class = "Service.Comment.CommentService"/>
+<bean id = "dominoService" 
+			class = "Service.Domino.DominoService"/>			
+			
  
 </beans>

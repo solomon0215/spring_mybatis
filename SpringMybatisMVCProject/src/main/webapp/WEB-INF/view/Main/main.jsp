@@ -54,6 +54,7 @@ ${authInfo.name }님 환영합니다.<br />
 <a href = "survey" >설문지</a>
 <a href = "ajaxTest">AjaxTest</a>
 <a href = "AjaxForm">AjaxTest1</a>
+<a href = "domino">도미노</a>
 </c:if>
 </body>
 </html>
